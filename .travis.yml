@@ -1,9 +1,11 @@
 language: php
 
-sudo: false
+env:
+  global:
+    - SYMFONY_DEPRECATIONS_HELPER=weak
 
 git:
-    depth: 10
+  depth: 10
 
 cache:
   directories:
@@ -11,26 +13,28 @@ cache:
 
 matrix:
   include:
-    - php: 7.0
-      env: SYMFONY_VERSION=v3
     - php: 7.1
-      env: SYMFONY_VERSION=v3
+      env: SYMFONY_REQUIRE=^4
     - php: 7.2
-      env: SYMFONY_VERSION=v3
-    - php: 7.1
-      env: SYMFONY_VERSION=v4
-    - php: 7.2
-      env: SYMFONY_VERSION=v4
+      env: SYMFONY_REQUIRE=^4
     - php: 7.3
-      env: SYMFONY_VERSION=v5
+      env: SYMFONY_REQUIRE=^4
+    - php: 7.4
+      env: SYMFONY_REQUIRE=^4
+    - php: 7.2
+      env: SYMFONY_REQUIRE=^5
+    - php: 7.3
+      env: SYMFONY_REQUIRE=^5
+    - php: 7.4
+      env: SYMFONY_REQUIRE=^5
 
 before_install:
-    - composer self-update
+  - composer self-update
 
 install:
-    - composer require dunglas/symfony-lock:${SYMFONY_VERSION} --no-update
-    - composer require "php-http/guzzle6-adapter:^1.0" --no-update
-    - composer install --prefer-source
+  - composer require symfony/flex --no-update
+  - composer require "php-http/guzzle6-adapter:^1.0" --no-update
+  - composer install --prefer-source
 
 script:
-    - bin/phpunit
+  - bin/phpunit
