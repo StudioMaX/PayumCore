@@ -1,5 +1,5 @@
 {
-    "name": "payum/core",
+    "name": "studiomax/core",
     "type": "library",
     "description": "One million downloads of Payum already! Payum offers everything you need to work with payments. Friendly for all PHP frameworks (Symfony, Laravel, Zend, Yii, Silex). Check more visiting site.",
     "keywords": [
@@ -58,6 +58,9 @@
         "symfony/dependency-injection": "^4.4|^5.0",
         "symfony/phpunit-bridge": "^4.4|^5.0",
         "defuse/php-encryption": "^2"
+    },
+    "replace": {
+        "payum/core": "<=1.6.0"
     },
     "suggest": {
         "payum/paypal-express-checkout-nvp": "self.version If you want to use paypal express checkout, digital goods or recurring payments",
